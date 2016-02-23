@@ -21,7 +21,7 @@ make_task_def() {
     task_template='[
 	{
 	    "name": "uwsgi",
-	    "image": "bellkev/circle-ecs:%s",
+	    "image": "homiez/circle-ecs:%s",
 	    "essential": true,
 	    "memory": 200,
 	    "cpu": 10
@@ -68,9 +68,9 @@ deploy_cluster() {
 
     make_task_def
     register_definition
-    if [[ $(aws ecs update-service --cluster circle-ecs --service circle-ecs-service --task-definition $revision | \
+    if [[ $(aws ecs update-service --cluster circle-ecs-cluster --service circle-ecs-service --task-definition $revision | \
                    $JQ '.service.taskDefinition') != $revision ]]; then
-        echo "Error updating service."
+        echo "Error updating service. name"
         return 1
     fi
 
