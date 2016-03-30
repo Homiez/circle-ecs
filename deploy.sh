@@ -10,6 +10,9 @@ JQ="jq --raw-output --exit-status"
 check_ecs_cli() {
     which ecs-cli | cat
     ecs-cli configure -c circlecitest -r ap-northeast-1 | cat
+    cat pwd
+    cat CIRCLE_SHA1
+    cat ~/docker-compose.yml
     cat ~/.ecs/config
     ecs-cli compose up
 }
