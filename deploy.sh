@@ -13,11 +13,9 @@ check_ecs_cli() {
     docker images | cat
     pwd | cat
     echo CIRCLE_SHA1
-    cat ls
+    ls | cat
     cat ~/.ecs/config
-    docker build -t rw/circleci .
     aws ecr get-login --region us-east-1 | bash
-    docker tag rw/circleci 418299443513.dkr.ecr.us-east-1.amazonaws.com/rw/circleci:$CIRCLE_SHA1
     docker push 418299443513.dkr.ecr.us-east-1.amazonaws.com/rw/circleci:$CIRCLE_SHA1
     ecs-cli compose up
 }
