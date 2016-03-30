@@ -7,12 +7,22 @@ set -o pipefail
 # more bash-friendly output for jq
 JQ="jq --raw-output --exit-status"
 
+check_ecs_cli() {
+    which ecs-cli | cat
+    ecs-cli configure -c circlecitest -r ap-northeast-1 | cat
+    cat ~/.ecs/config
+}
+
+check_ecs_cli
+
 deploy_image() {
 
     docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
     docker push homiez/circle-ecs:$CIRCLE_SHA1 | cat # workaround progress weirdness
 
 }
+
+
 
 # reads $CIRCLE_SHA1, $host_port
 # sets $task_def
