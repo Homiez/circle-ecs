@@ -13,7 +13,7 @@ check_ecs_cli() {
     docker images | cat
     pwd | cat
     echo CIRCLE_SHA1
-    cat ~/docker-compose.yml
+    cat ls
     cat ~/.ecs/config
     docker build -t rw/circleci .
     aws ecr get-login --region us-east-1 | bash
