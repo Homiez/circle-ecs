@@ -1,5 +1,5 @@
 uwsgi:
-  image: "homiez/circle-ecs:${CIRCLE_SHA1}"
+  image: "418299443513.dkr.ecr.us-east-1.amazonaws.com/rw/circleci:${CIRCLE_SHA1}"
 nginx:
   image: bellkev/nginx-base:stable
   links:
